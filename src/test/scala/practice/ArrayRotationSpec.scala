@@ -16,12 +16,7 @@ class ArrayRotationSpec extends FlatSpec with Matchers {
   "karpatka",
   "othellolagkage")
 
-  val arrayRotation = new ArrayRotation{
-    val chars = words1
-    val firstC = 0
-    val lastC = words1.size - 1 }
-
-  val expectedIndex = arrayRotation.findStartingPoint(arrayRotation.chars, arrayRotation.firstC, arrayRotation.lastC)
+  val expectedIndex = (new ArrayRotation).findStartingPointP(words1)
   expectedIndex shouldBe 5
 
 

@@ -1,40 +1,39 @@
 package practice
 
-trait ArrayRotation {
-  def chars: List[String]
+class ArrayRotation {
+  def findStartingPointP(chars: List[String]) = {
+    findStartingPoint(new ComparingList(chars))
+  }
 
-  def firstC: Int
-
-  def lastC: Int
-
-  def findStartingPoint(chars: List[String], firstC: Int, lastC: Int): Int = {
-    if (lastC - firstC >= 2) {
-
-      val midpoint = firstC + ((lastC - firstC)/ 2)
-
-      if (chars(firstC) < chars(midpoint)) {
-        findStartingPoint(chars, midpoint + 1, lastC)
+  def findStartingPoint(c: ComparingList): Int = c.size match {
+    case greater if c.size > 2 =>
+      if (c.first < c.mid) {
+        findStartingPoint(c.secondHalf)
       } else {
-        findStartingPoint(chars, firstC, midpoint)
+        findStartingPoint(c.firstHalf)
       }
-    }
-    else if(lastC - firstC == 1) {
-      if (chars(firstC) < chars(lastC)) firstC
-      else lastC
-    }
-    else if(lastC - firstC == 0) {lastC}
-    else 0
+    case 2 => if (c.first < c.last) c.firstIndex else c.lastIndex
+    case 1 => c.lastIndex
+    case _ => 0
   }
 }
 
-case class ComparingList(first: Int, last: Int, midpoint: Int)
+case class ComparingList(chars: List[String], firstIndex: Int, lastIndex: Int) {
+  def this(chars: List[String]) = this(chars, 0, chars.size - 1)
 
-object ArrayRotation {
-  def apply(charList: List[String]) = new ArrayRotation {
-    val chars = charList
-    val firstC = 0
-    val lastC = chars.size - 1
-  }
+  def midpoint = firstIndex + ((lastIndex - firstIndex) / 2)
+
+  def first = chars(firstIndex)
+
+  def last = chars(lastIndex)
+
+  def mid = chars(midpoint)
+
+  def secondHalf = ComparingList(chars, midpoint + 1, lastIndex)
+
+  def firstHalf = ComparingList(chars, firstIndex, midpoint)
+
+  def size = (lastIndex - firstIndex) + 1
 }
 
 
