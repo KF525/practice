@@ -7,7 +7,8 @@ class ArrayRotation {
 
   def findStartingPoint(c: ComparingList): Int = c.size match {
     case greater if c.size > 2 =>
-      if (c.first < c.mid) {
+      if (c.first < c.last) c.firstIndex
+      else if (c.first < c.mid) {
         findStartingPoint(c.secondHalf)
       } else {
         findStartingPoint(c.firstHalf)
@@ -29,16 +30,9 @@ case class ComparingList(chars: List[String], firstIndex: Int, lastIndex: Int) {
 
   def mid = chars(midpoint)
 
-  def secondHalf = ComparingList(chars, midpoint + 1, lastIndex)
+  def secondHalf = ComparingList(chars, midpoint, lastIndex)
 
   def firstHalf = ComparingList(chars, firstIndex, midpoint)
 
   def size = (lastIndex - firstIndex) + 1
 }
-
-
-/*
-a, b, c, d, t, x, z
-x, a, b, c, d, t, u
-d, t, x, a, b, c, d
-*/
