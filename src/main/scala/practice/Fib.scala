@@ -7,3 +7,7 @@ class Fib {
     case _ => getFibValue(n-1) + getFibValue(n-2)
   }
 }
+
+/*
+If you're good with matrix multiplication you can bring the time cost down even further, to O(\lg{n})O(lgn). Can you figure out how?
+ */
