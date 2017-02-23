@@ -2,7 +2,7 @@ package practice
 
 import org.scalatest.{FlatSpec, Matchers}
 
-class GetWeightsSpec extends FlatSpec with Matchers {
+class WeightedListsSpec extends FlatSpec with Matchers {
   "GetWeights" should "correctly divide an array into two" in {
     val getWeights = new GetWeights
 
