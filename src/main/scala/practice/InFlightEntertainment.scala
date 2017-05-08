@@ -3,6 +3,7 @@ package practice
 import scala.concurrent.duration._
 
 class InFlightEntertainment {
+  // FIND 2 number of Movies
   def findMovies(flightTime: Duration, movies: Map[String, Duration]): Boolean = {
     val movieDurations = movies.values
     compareTimes(flightTime, movieDurations.head, movieDurations.tail)
@@ -19,6 +20,8 @@ class InFlightEntertainment {
         compareTimes(flightTime, remainingMovieDurations.head, remainingMovieDurations.tail)
     }
 
+
+  //FIND N number of Movies
   def findNMovies(flightTime: Duration, movies: Map[String, Duration], numberOfMovies:Int): Boolean = {
     val movieDurations: Iterable[Duration] = movies.values
     compareTimesForNMovies(numberOfMovies-1, flightTime, movieDurations.head, movieDurations.tail)
@@ -39,6 +42,8 @@ class InFlightEntertainment {
           compareTimes(flightTime, remainingMovieDurations.head, remainingMovieDurations.tail)
     }
 
+
+  //FIND MOVIES WITHIN 20 MINUTES OF FLIGHT TIME
   def findMoviesWithin20(flightTime: Duration, movies: Map[String, Duration]): Boolean = {
     val movieDurations = movies.values
     compareTimesForMoviesWithin20(flightTime, movieDurations.head, movieDurations.tail)
